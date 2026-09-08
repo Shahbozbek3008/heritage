@@ -1,0 +1,79 @@
+   ▲ Next.js 15.5.4
+   - Local:        http://localhost:4310
+   - Network:      http://192.168.44.94:4310
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 8.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 11.2s (707 modules)
+ GET / 200 in 11939ms
+ ✓ Compiled /tree in 451ms (692 modules)
+ GET /tree 200 in 717ms
+ GET / 200 in 214ms
+ GET / 200 in 200ms
+ GET / 200 in 242ms
+ ✓ Compiled in 153ms (268 modules)
+ ✓ Compiled in 192ms (268 modules)
+ ✓ Compiled in 224ms (684 modules)
+ ✓ Compiled in 131ms (268 modules)
+ ✓ Compiled in 142ms (268 modules)
+ ✓ Compiled in 126ms (268 modules)
+ ✓ Compiled in 138ms (268 modules)
+ ✓ Compiled in 151ms (268 modules)
+ ✓ Compiled in 147ms (268 modules)
+ ✓ Compiled in 138ms (268 modules)
+ ✓ Compiled in 130ms (268 modules)
+ ✓ Compiled in 121ms (268 modules)
+ ✓ Compiled in 154ms (268 modules)
+ ✓ Compiled in 127ms (268 modules)
+ ✓ Compiled in 132ms (268 modules)
+ ✓ Compiled in 125ms (268 modules)
+ ✓ Compiled in 115ms (268 modules)
+ ✓ Compiled in 123ms (268 modules)
+ ✓ Compiled in 129ms (268 modules)
+ ✓ Compiled in 119ms (268 modules)
+ ✓ Compiled in 143ms (268 modules)
+ ✓ Compiled in 117ms (268 modules)
+ ✓ Compiled in 139ms (268 modules)
+ ✓ Compiled in 159ms (268 modules)
+ ✓ Compiled in 122ms (268 modules)
+ ✓ Compiled in 150ms (268 modules)
+ ✓ Compiled in 158ms (254 modules)
+ ✓ Compiled in 133ms (268 modules)
+ ✓ Compiled in 132ms (268 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 631ms (683 modules)
+ GET / 200 in 1057ms
+ ✓ Compiled /tree in 148ms (433 modules)
+ GET /tree 200 in 411ms
+ ✓ Compiled /people in 214ms (707 modules)
+ GET /people 200 in 511ms
+ ✓ Compiled /people/[slug] in 211ms (717 modules)
+ GET /people/miriam-abrams 200 in 1093ms
+ GET /people/rivka-abramowicz 200 in 98ms
+ ✓ Compiled /timeline in 209ms (722 modules)
+ GET /timeline 200 in 525ms
+ ✓ Compiled /stories in 187ms (724 modules)
+ GET /stories 200 in 364ms
+ ✓ Compiled /stories/[slug] in 219ms (729 modules)
+ GET /stories/eleven-dollars 200 in 941ms
+ GET /stories/the-second-hand 200 in 94ms
+ ✓ Compiled /photos in 304ms (739 modules)
+ GET /photos 200 in 481ms
+ ✓ Compiled /places in 239ms (741 modules)
+ GET /places 200 in 421ms
+ ✓ Compiled /places/[slug] in 287ms (746 modules)
+ GET /places/vilna 200 in 1019ms
+ ✓ Compiled /archive in 266ms (748 modules)
+ GET /archive 200 in 433ms
+ ✓ Compiled /sitemap.xml in 359ms (767 modules)
+ GET /sitemap.xml 200 in 525ms
+ ✓ Compiled /robots.txt in 253ms (770 modules)
+ GET /robots.txt 200 in 302ms
+ ✓ Compiled /_not-found in 294ms (771 modules)
+ GET /nonexistent-page 404 in 502ms
+ ✓ Compiled in 434ms (785 modules)
+ ✓ Compiled in 633ms (785 modules)
+ ✓ Compiled in 489ms (783 modules)
