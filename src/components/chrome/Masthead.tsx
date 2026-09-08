@@ -213,25 +213,27 @@ export function Masthead(): React.ReactElement {
             </div>
 
             <nav aria-label="All sections" className="min-h-0 flex-1 overflow-y-auto">
-              <ul className="px-2 py-3">
+              <ul className="py-2">
                 {NAV_ITEMS.map((item) => {
                   const active = isActive(item.href);
                   return (
                     <li key={item.href}>
+                      {/*
+                        Rows run edge to edge with square corners, so the active
+                        state reads as part of the drawer rather than as a card
+                        floating inside it. The gold rule on the leading edge is
+                        what marks the current section.
+                      */}
                       <Link
                         href={item.href}
                         className={cn(
-                          'relative flex flex-col gap-0.5 rounded-2xl px-3 py-3 transition-colors active:bg-white/[0.095]',
-                          active && 'bg-gold/[0.08]',
+                          'relative flex flex-col gap-0.5 border-l-2 py-3 pl-5 pr-4 transition-colors duration-200',
+                          active
+                            ? 'border-gold bg-gold/[0.07]'
+                            : 'border-transparent hover:bg-white/[0.05] active:bg-white/[0.08]',
                         )}
                         aria-current={active ? 'page' : undefined}
                       >
-                        {active && (
-                          <span
-                            aria-hidden
-                            className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-gold"
-                          />
-                        )}
                         <span
                           className={cn(
                             'font-display text-fluid-lg leading-tight',
