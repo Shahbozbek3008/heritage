@@ -48,7 +48,7 @@ export default async function PlacesPage(): Promise<React.ReactElement> {
                 )}
 
                 <div className="flex min-w-0 flex-col justify-center">
-                  <p className="label-mono text-[0.625rem] text-gold-200">
+                  <p className="label-mono text-gold-200">
                     {String(i + 1).padStart(2, '0')} · {place.country}
                     {place.generations && place.generations.length > 0
                       ? ` · Generations ${place.generations.join(', ')}`

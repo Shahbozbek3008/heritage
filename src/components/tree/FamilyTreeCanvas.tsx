@@ -447,7 +447,7 @@ export function FamilyTreeCanvas({
           <div className="pointer-events-auto w-full max-w-md animate-sheet-up rounded-2xl border border-border/12 bg-card/90 p-4 shadow-float backdrop-blur-xl">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="label-mono text-[0.625rem] text-gold-200">
+                <p className="label-mono text-gold-200">
                   Generation {selectedNode.person.generation}
                 </p>
                 <p className="mt-1 truncate font-display text-fluid-lg text-foreground">
@@ -542,7 +542,7 @@ function TreeNodeCard({
             <span className="block truncate font-display text-[0.9375rem] leading-tight text-foreground">
               {node.person.familyName}
             </span>
-            <span className="mt-0.5 block truncate font-sans text-[0.625rem] text-muted-foreground">
+            <span className="mt-0.5 block truncate font-sans text-[0.6875rem] text-muted-foreground">
               {formatLifespan(node.person)}
             </span>
           </span>
@@ -582,7 +582,7 @@ function TreeNodeCard({
                 <span className="block truncate font-display text-[0.8125rem] leading-tight text-foreground/85">
                   {node.spouse.givenName}
                 </span>
-                <span className="block truncate font-sans text-[0.5625rem] text-muted-foreground">
+                <span className="block truncate font-sans text-[0.6875rem] text-muted-foreground">
                   {formatLifespan(node.spouse)}
                 </span>
               </span>

@@ -164,7 +164,7 @@ export default async function PersonPage({ params }: PageProps): Promise<React.R
             {person.occupation && <VitalRow label="Trade" value={person.occupation} />}
             {spouses.length > 0 && (
               <div>
-                <dt className="label-mono text-[0.625rem]">
+                <dt className="label-mono">
                   {spouses.length === 1 ? 'Married' : 'Marriages'}
                 </dt>
                 <dd className="mt-1.5 font-serif text-fluid-base text-foreground">
@@ -357,7 +357,7 @@ function VitalRow({
 }): React.ReactElement {
   return (
     <div>
-      <dt className="label-mono text-[0.625rem]">{label}</dt>
+      <dt className="label-mono">{label}</dt>
       <dd className="mt-1.5 font-serif text-fluid-base text-foreground">
         {value}
         {place && (

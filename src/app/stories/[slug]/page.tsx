@@ -151,7 +151,7 @@ export default async function StoryPage({ params }: PageProps): Promise<React.Re
               {more.map((other) => (
                 <li key={other.id}>
                   <Link href={`/stories/${other.slug}`} className="group block">
-                    <p className="label-mono text-[0.625rem] text-gold-200">{other.era}</p>
+                    <p className="label-mono text-gold-200">{other.era}</p>
                     <h3 className="mt-2 font-display text-fluid-lg leading-snug text-foreground transition-colors group-hover:text-gold-100">
                       {other.title}
                     </h3>

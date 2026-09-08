@@ -119,6 +119,15 @@ const config: Config = {
           from: { transform: 'translate3d(0,100%,0)' },
           to: { transform: 'translate3d(0,0,0)' },
         },
+        'drawer-in': {
+          from: { transform: 'translate3d(-100%,0,0)' },
+          to: { transform: 'translate3d(0,0,0)' },
+        },
+        'drawer-out': {
+          from: { transform: 'translate3d(0,0,0)' },
+          to: { transform: 'translate3d(-100%,0,0)' },
+        },
+        'fade-out': { from: { opacity: '1' }, to: { opacity: '0' } },
         shimmer: {
           '100%': { transform: 'translateX(100%)' },
         },
@@ -131,6 +140,10 @@ const config: Config = {
         'fade-rise': 'fade-rise 0.7s cubic-bezier(0.16,1,0.3,1) both',
         'fade-in': 'fade-in 0.4s ease-out both',
         'sheet-up': 'sheet-up 0.32s cubic-bezier(0.16,1,0.3,1) both',
+        /* Drawer opens on a decelerating curve and leaves a little faster. */
+        'drawer-in': 'drawer-in 0.42s cubic-bezier(0.16,1,0.3,1) both',
+        'drawer-out': 'drawer-out 0.28s cubic-bezier(0.4,0,1,1) both',
+        'fade-out': 'fade-out 0.28s ease-out both',
         shimmer: 'shimmer 2.2s infinite',
         aurora: 'aurora-drift 22s ease-in-out infinite',
       },

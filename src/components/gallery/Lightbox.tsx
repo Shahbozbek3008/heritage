@@ -204,7 +204,7 @@ export function Lightbox({
             {asset.date ? formatHistoricalDate(asset.date).toUpperCase() : 'DATE UNKNOWN'}
             {asset.collection ? ` · ${asset.collection.toUpperCase()}` : ''}
           </p>
-          <p className="mt-3 font-sans text-[0.625rem] text-muted-foreground/50 sm:hidden">
+          <p className="mt-3 font-sans text-[0.6875rem] text-muted-foreground/50 sm:hidden">
             Swipe to browse · swipe down to close
           </p>
         </div>

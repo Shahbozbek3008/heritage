@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from './nav-items';
 import { cn } from '@/lib/utils';
@@ -14,10 +14,35 @@ import { cn } from '@/lib/utils';
  * condenses into a floating frosted pill. Mobile carries only the wordmark and
  * a menu trigger — primary navigation lives in the thumb-reachable bottom bar.
  */
+/** Must match the drawer-out / fade-out duration in the Tailwind config. */
+const CLOSE_MS = 280;
+
 export function Masthead(): React.ReactElement {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [condensed, setCondensed] = useState(false);
+
+  /*
+   * Unmounting on click would cut the exit animation off, so a close request
+   * first plays `closing` and only then drops the drawer from the tree.
+   */
+  const closeDrawer = useCallback((): void => {
+    setClosing(true);
+  }, []);
+
+  useEffect(() => {
+    if (!closing) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(
+      () => {
+        setOpen(false);
+        setClosing(false);
+      },
+      prefersReduced ? 0 : CLOSE_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [closing]);
 
   useEffect(() => {
     const onScroll = (): void => setCondensed(window.scrollY > 24);
@@ -26,12 +51,13 @@ export function Masthead(): React.ReactElement {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close the sheet on navigation.
+  // Close on navigation, without animating: the page underneath is changing.
   useEffect(() => {
     setOpen(false);
+    setClosing(false);
   }, [pathname]);
 
-  // Lock background scroll while the sheet is open.
+  // Lock background scroll while the drawer is open.
   useEffect(() => {
     if (!open) return;
     const previous = document.body.style.overflow;
@@ -44,11 +70,11 @@ export function Masthead(): React.ReactElement {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') closeDrawer();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open]);
+  }, [open, closeDrawer]);
 
   const isActive = (href: string): boolean =>
     pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
@@ -84,7 +110,7 @@ export function Masthead(): React.ReactElement {
                 <span className="truncate font-display text-[1.0625rem] font-normal tracking-tight text-foreground sm:text-lg">
                   The Family Archive
                 </span>
-                <span className="mt-1 font-sans text-[0.5625rem] uppercase tracking-[0.22em] text-muted-foreground/70">
+                <span className="mt-1 font-sans text-[0.6875rem] uppercase tracking-[0.22em] text-muted-foreground/70">
                   Est. 1849
                 </span>
               </span>
@@ -143,26 +169,51 @@ export function Masthead(): React.ReactElement {
         >
           <button
             type="button"
-            className="absolute inset-0 animate-fade-in bg-background/80 backdrop-blur-md"
-            onClick={() => setOpen(false)}
+            className={cn(
+              'absolute inset-0 bg-background/80 backdrop-blur-md',
+              closing ? 'animate-fade-out' : 'animate-fade-in',
+            )}
+            onClick={closeDrawer}
             aria-label="Close menu"
             tabIndex={-1}
           />
-          <div className="glass absolute inset-x-2 bottom-2 max-h-[88dvh] animate-sheet-up overflow-y-auto rounded-3xl pb-safe">
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/10 bg-card/80 px-5 py-4 backdrop-blur-xl">
-              <span className="label-mono">Navigate</span>
+
+          {/*
+            Left drawer. It runs the full height and is pinned to the left
+            edge, so the panel reads as sliding in from off-screen rather than
+            as a floating card.
+          */}
+          <div
+            className={cn(
+              'glass absolute inset-y-0 left-0 flex w-[min(20rem,86vw)] flex-col rounded-none border-l-0 pb-safe pt-safe',
+              closing ? 'animate-drawer-out' : 'animate-drawer-in',
+            )}
+          >
+            <div className="flex items-center justify-between border-b border-border/10 px-5 py-4">
+              <Link href="/" className="flex min-w-0 items-center gap-2.5" onClick={closeDrawer}>
+                <span
+                  aria-hidden
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-gold/30 bg-gradient-to-b from-gold/20 to-transparent font-display text-xs text-gold-100"
+                >
+                  FA
+                </span>
+                <span className="truncate font-display text-base text-foreground">
+                  The Family Archive
+                </span>
+              </Link>
+
               <button
                 type="button"
-                onClick={() => setOpen(false)}
-                className="touch-target -mr-2 flex items-center justify-center text-muted-foreground"
+                onClick={closeDrawer}
+                className="touch-target -mr-2 flex items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Close menu"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <nav aria-label="All sections">
-              <ul className="px-2 pb-6 pt-2">
+            <nav aria-label="All sections" className="min-h-0 flex-1 overflow-y-auto">
+              <ul className="px-2 py-3">
                 {NAV_ITEMS.map((item) => {
                   const active = isActive(item.href);
                   return (
@@ -170,20 +221,26 @@ export function Masthead(): React.ReactElement {
                       <Link
                         href={item.href}
                         className={cn(
-                          'flex items-baseline justify-between gap-4 rounded-2xl px-3 py-3.5 transition-colors active:bg-white/[0.095]',
+                          'relative flex flex-col gap-0.5 rounded-2xl px-3 py-3 transition-colors active:bg-white/[0.095]',
                           active && 'bg-gold/[0.08]',
                         )}
                         aria-current={active ? 'page' : undefined}
                       >
+                        {active && (
+                          <span
+                            aria-hidden
+                            className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-gold"
+                          />
+                        )}
                         <span
                           className={cn(
-                            'font-display text-fluid-lg',
+                            'font-display text-fluid-lg leading-tight',
                             active ? 'text-gold-100' : 'text-foreground',
                           )}
                         >
                           {item.label}
                         </span>
-                        <span className="shrink-0 font-sans text-xs text-muted-foreground/70">
+                        <span className="font-sans text-xs text-muted-foreground/70">
                           {item.description}
                         </span>
                       </Link>
@@ -192,6 +249,10 @@ export function Masthead(): React.ReactElement {
                 })}
               </ul>
             </nav>
+
+            <p className="border-t border-border/10 px-5 py-4 font-sans text-[0.6875rem] uppercase tracking-[0.22em] text-muted-foreground/60">
+              Est. 1849
+            </p>
           </div>
         </div>
       )}

@@ -49,7 +49,7 @@ export function MobileTabBar(): React.ReactElement {
                   />
                 )}
                 <Icon className="relative h-[1.125rem] w-[1.125rem]" />
-                <span className="relative font-sans text-[0.625rem] tracking-wide">
+                <span className="relative font-sans text-[0.6875rem] tracking-wide">
                   {item.short}
                 </span>
               </Link>

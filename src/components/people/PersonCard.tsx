@@ -35,7 +35,7 @@ function MissingPortrait({
           {person.familyName.charAt(0)}
         </span>
         {!compact && (
-          <span className="mt-1.5 block font-sans text-[0.5625rem] uppercase tracking-[0.16em] text-muted-foreground/60">
+          <span className="mt-1.5 block font-sans text-[0.6875rem] uppercase tracking-[0.16em] text-muted-foreground/60">
             No portrait
           </span>
         )}
@@ -103,7 +103,7 @@ export function PersonCard({
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-transparent" />
 
         <div className="pointer-events-none absolute bottom-3 left-3">
-          <span className="rounded-full border border-gold/25 bg-background/60 px-2.5 py-1 font-sans text-[0.625rem] uppercase tracking-[0.14em] text-gold-200 backdrop-blur-md">
+          <span className="rounded-full border border-gold/25 bg-background/60 px-2.5 py-1 font-sans text-[0.6875rem] uppercase tracking-[0.14em] text-gold-200 backdrop-blur-md">
             Gen {person.generation}
           </span>
         </div>

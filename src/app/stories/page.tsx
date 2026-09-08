@@ -87,7 +87,7 @@ export default async function StoriesPage(): Promise<React.ReactElement> {
                     />
                   </div>
                 )}
-                <p className="label-mono mt-5 text-[0.625rem] text-gold-200">
+                <p className="label-mono mt-5 text-gold-200">
                   {story.era} · {story.readingMinutes} min read
                 </p>
                 <h2 className="mt-2.5 font-display text-fluid-xl leading-tight text-foreground transition-colors duration-300 group-hover:text-gold-100">

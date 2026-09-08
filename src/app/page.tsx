@@ -104,7 +104,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
                   key={stat.label}
                   className="rounded-2xl border border-border/10 bg-white/[0.042] px-4 py-5 backdrop-blur-sm transition-colors duration-500 hover:border-gold/20 hover:bg-gold/[0.04]"
                 >
-                  <dt className="label-mono text-[0.625rem]">{stat.label}</dt>
+                  <dt className="label-mono">{stat.label}</dt>
                   <dd className="text-gradient-gold mt-2 font-display text-fluid-2xl leading-none">
                     {stat.value}
                   </dd>
@@ -322,7 +322,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
                         />
                       </div>
                     )}
-                    <p className="label-mono mt-5 text-[0.625rem] text-gold-200">
+                    <p className="label-mono mt-5 text-gold-200">
                       {story.era} · {story.readingMinutes} min read
                     </p>
                     <h3 className="mt-2.5 font-display text-fluid-xl leading-tight text-foreground transition-colors duration-300 group-hover:text-gold-100">

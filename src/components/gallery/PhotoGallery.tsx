@@ -105,7 +105,7 @@ export function PhotoGallery({
                   </p>
                 )}
                 {asset.date && (
-                  <p className="mt-1 font-sans text-[0.625rem] tracking-[0.14em] text-gold-200/70">
+                  <p className="mt-1 font-sans text-[0.6875rem] tracking-[0.14em] text-gold-200/70">
                     {formatHistoricalDate(asset.date).toUpperCase()}
                   </p>
                 )}
